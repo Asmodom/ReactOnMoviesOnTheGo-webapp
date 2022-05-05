@@ -10,7 +10,7 @@ export default class Genres extends Component{
     };
 
     componentDidMount() {
-        fetch("http://localhost:4000/v1/genress")
+        fetch("http://localhost:4000/v1/genres")
         //.then(response => response.json())
         .then((response) =>{
             console.log("Status code is", response.status);
@@ -23,7 +23,7 @@ export default class Genres extends Component{
         })
         .then((json) =>{
             this.setState({
-                genres: json.genrees,
+                genres: json.genres,
                 isLoaded: true,
             },
             (error)=>{
@@ -43,7 +43,7 @@ export default class Genres extends Component{
             <ul>
                 {genres.map((g) => (
                     <li key={g.id}>
-                        <Link to={`/genre/${g.id}`}>
+                        <Link to={{pathname:`/genre/${g.id}`, genreName: g.genre_name,}}>
                             {g.genre_name}
                         </Link>
                     </li>
